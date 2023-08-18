@@ -18,49 +18,90 @@ const multiplicar = document.querySelector('.multiplicar');
 const restar = document.querySelector('.restar');
 const sumar = document.querySelector('.sumar');
 
-
-borrar.addEventListener('click', eliminar);
-
-uno.addEventListener('click', () => recibirNumero(1));
-dos.addEventListener('click', () => recibirNumero(2));
-tres.addEventListener('click', () => recibirNumero(3));
-cuatro.addEventListener('click', () => recibirNumero(4));
-cinco.addEventListener('click', () => recibirNumero(5));
-seis.addEventListener('click', () => recibirNumero(6));
-siete.addEventListener('click', () => recibirNumero(7));
-ocho.addEventListener('click', () => recibirNumero(8));
-nueve.addEventListener('click', () => recibirNumero(9));
-cero.addEventListener('click', () => recibirNumero(0));
+const igual = document.querySelector('resultado');
 
 
+    borrar.addEventListener('click', eliminar);
+
+    uno.addEventListener('click', () =>guardarNumero(1));
+    dos.addEventListener('click', () =>guardarNumero(2));
+    tres.addEventListener('click', () =>guardarNumero(3));
+    cuatro.addEventListener('click', () =>guardarNumero(4));
+    cinco.addEventListener('click', () =>guardarNumero(5));
+    seis.addEventListener('click', () =>guardarNumero(6));
+    siete.addEventListener('click', () =>guardarNumero(7));
+    ocho.addEventListener('click', () =>guardarNumero(8));
+    nueve.addEventListener('click', () =>guardarNumero(9));
+    cero.addEventListener('click', () =>guardarNumero(0));
+
+    porcentaje.addEventListener('click', () => operaciones('porcentaje'));
+    dividir.addEventListener('click', () => operaciones('dividir'));
+    multiplicar.addEventListener('click',() => operaciones('multiplicar') );
+    restar.addEventListener('click', () => operaciones('restar'));
+    sumar.addEventListener('click', () => operaciones('sumar') );
+
+    igual.addEventListener('click', )
 
 
-resultados = "32";
 
+let flag;
 const escribir = document.createElement('p');
 let numeroCompleto;
-
-function MostrarResultado(resultado){
-    escribir.innerHTML = resultado;
-    pantalla.appendChild(escribir);
-}
+resultados  = " ";
+var num2 = " ";
+var num = " ";
+numero = " ";
+let elegirOperacion;
 
 function eliminar() {
-    escribir.innerHTML = 0;
-    pantalla.appendChild(escribir)
-}
-
-function recibirNumero(numero) {
-    let num = 0;
-    num += numero;
-    escribir.innerHTML += numero;
+    escribir.innerHTML = " ";
     pantalla.appendChild(escribir);
-    return num;
 }
 
-function operaciones(num1, num2) {
+function operaciones(operacion) {
+    switch(operacion){
+        case 'sumar': 
+            flag = true;
+            elegirOperacion = 'sumar';
+            break;
+        case 'restar':
+            flag = true;
+            elegirOperacion = 'restar';
+            break;
+        case 'dividir':
+            flag = true;
+            elegirOperacion = 'dividir';
+            break;
+        case 'multiplicar':
+            flag = true;
+            elegirOperacion = 'multiplicar';
+            break;
+        case 'porcentaje':
+            flag = true;
+            elegirOperacion = 'porcentaje';
+            break;
+    }
+}
+
+function guardarNumero(numero) {
+    if(flag !== true ){
+    num += String(numero);
+    escribir.innerHTML += numero;
     
+    pantalla.appendChild(escribir);
+    } else if(flag == true){
+        if(num2 == 0){
+            eliminar();
+        }
+        num2 += String(numero);
+        escribir.innerHTML += numero;
+        pantalla.appendChild(escribir);
+    }
+    return num1, num2;
 }
 
-recibirNumero();
-MostrarResultado(resultados);
+
+
+guardarNumero(numero);
+eliminar();
+
