@@ -17,48 +17,48 @@ const dividir = document.querySelector('.dividir');
 const multiplicar = document.querySelector('.multiplicar');
 const restar = document.querySelector('.restar');
 const sumar = document.querySelector('.sumar');
-
-const igual = document.querySelector('resultado');
-
-
-    borrar.addEventListener('click', eliminar);
-
-    uno.addEventListener('click', () =>guardarNumero(1));
-    dos.addEventListener('click', () =>guardarNumero(2));
-    tres.addEventListener('click', () =>guardarNumero(3));
-    cuatro.addEventListener('click', () =>guardarNumero(4));
-    cinco.addEventListener('click', () =>guardarNumero(5));
-    seis.addEventListener('click', () =>guardarNumero(6));
-    siete.addEventListener('click', () =>guardarNumero(7));
-    ocho.addEventListener('click', () =>guardarNumero(8));
-    nueve.addEventListener('click', () =>guardarNumero(9));
-    cero.addEventListener('click', () =>guardarNumero(0));
-
-    porcentaje.addEventListener('click', () => operaciones('porcentaje'));
-    dividir.addEventListener('click', () => operaciones('dividir'));
-    multiplicar.addEventListener('click',() => operaciones('multiplicar') );
-    restar.addEventListener('click', () => operaciones('restar'));
-    sumar.addEventListener('click', () => operaciones('sumar') );
-
-    igual.addEventListener('click', )
+const igual = document.querySelector('.resultados');
 
 
+borrar.addEventListener('click', eliminar);
 
-let flag;
+uno.addEventListener('click', () =>guardarNumero(1));
+dos.addEventListener('click', () =>guardarNumero(2));
+tres.addEventListener('click', () =>guardarNumero(3));
+cuatro.addEventListener('click', () =>guardarNumero(4));
+cinco.addEventListener('click', () =>guardarNumero(5));
+seis.addEventListener('click', () =>guardarNumero(6));
+siete.addEventListener('click', () =>guardarNumero(7));
+ocho.addEventListener('click', () =>guardarNumero(8));
+nueve.addEventListener('click', () =>guardarNumero(9));
+cero.addEventListener('click', () =>guardarNumero(0));
+
+porcentaje.addEventListener('click', () => operaciones('porcentaje'));
+dividir.addEventListener('click', () => operaciones('dividir'));
+multiplicar.addEventListener('click',() => operaciones('multiplicar') );
+restar.addEventListener('click', () => operaciones('restar'));
+sumar.addEventListener('click', () => operaciones('sumar') );
+
+igual.addEventListener('click', resolver);
+
+
+
+var flag;
 const escribir = document.createElement('p');
-let numeroCompleto;
 resultados  = " ";
-var num2 = " ";
 var num = " ";
-numero = " ";
+var num2 = " ";
+var numero = ' ';
 let elegirOperacion;
 
 function eliminar() {
     escribir.innerHTML = " ";
     pantalla.appendChild(escribir);
+    
 }
 
 function operaciones(operacion) {
+    
     switch(operacion){
         case 'sumar': 
             flag = true;
@@ -83,11 +83,11 @@ function operaciones(operacion) {
     }
 }
 
+
 function guardarNumero(numero) {
     if(flag !== true ){
     num += String(numero);
     escribir.innerHTML += numero;
-    
     pantalla.appendChild(escribir);
     } else if(flag == true){
         if(num2 == 0){
@@ -97,11 +97,42 @@ function guardarNumero(numero) {
         escribir.innerHTML += numero;
         pantalla.appendChild(escribir);
     }
-    return num1, num2;
+    
 }
 
 
+function resolver(){
+    let n1 = parseInt(num);
+    let n2 = parseInt(num2);
+    console.log('Este es el segundo numero ' + n1);
+    var resultado;
+    switch(elegirOperacion){
+        case 'sumar': 
+            resultado = n1 + n2;
+            escribir.innerHTML = resultado;
+            pantalla.appendChild(escribir);
+            console.log('esta sumando ' + resultado);
+            break;
+        case 'restar':
+            resultado = n1 - n2;
+            escribir.innerHTML = resultado;
+            pantalla.appendChild(escribir);
+            break;
+        case 'dividir':
+            resultado = n1 / n2;
+            escribir.innerHTML = resultado;
+            pantalla.appendChild(escribir);
+            break;
+        case 'multiplicar':
+            resultado = n1 * n2;
+            escribir.innerHTML = resultado;
+            pantalla.appendChild(escribir);
+            break;
+        case 'porcentaje':
+            console.log('NON AVALIBLE');
+            break;
+    }
+}
 
-guardarNumero(numero);
 eliminar();
-
+guardarNumero(numero);
